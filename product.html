@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product | GY Puff &amp; Cloud</title>
+  <meta name="description" content="Product details, variants, and delivery information from GY Puff &amp; Cloud." />
+  <meta property="og:type" content="product" />
+  <meta property="og:url" content="https://gypuff.asf.sale/product.html" />
+  <meta property="og:site_name" content="GY Puff &amp; Cloud" />
+  <meta id="og-title" property="og:title" content="Product | GY Puff &amp; Cloud" />
+  <meta id="og-description" property="og:description" content="Product details, variants, and delivery information from GY Puff &amp; Cloud." />
+  <meta id="og-image" property="og:image" content="https://vape-shop-be2g.onrender.com/og-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta id="twitter-title" name="twitter:title" content="Product | GY Puff &amp; Cloud" />
+  <meta id="twitter-description" name="twitter:description" content="Product details, variants, and delivery information from GY Puff &amp; Cloud." />
+  <meta id="twitter-image" name="twitter:image" content="https://vape-shop-be2g.onrender.com/og-preview.jpg" />
+  <link rel="canonical" href="https://gypuff.asf.sale/product.html" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="nicotine-bar">
+    <strong>WARNING:</strong> This product contains nicotine. Nicotine is an addictive chemical. Strictly for <strong>18+ adults only</strong>.
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/favicon.svg" alt="" /></span>
+        <span>GY Puff &amp; Cloud</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html#catalog">Catalog</a>
+        <a href="index.html#delivery-info">Delivery &amp; Policy</a>
+        <a href="https://wa.me/8801410715713" target="_blank" rel="noopener">Support</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="theme-toggle" class="icon-btn theme-toggle-btn" aria-label="Toggle theme" aria-pressed="false" title="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" id="open-cart-btn" class="icon-btn">
+          <span>Cart</span>
+          <span id="cart-count" class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container product-page-section">
+    <p id="pd-status" class="pd-status" role="status">Loading product...</p>
+
+    <section id="pd-not-found" class="pd-not-found hidden" aria-live="polite">
+      <h1>Product not found</h1>
+      <p>We couldn't find that product. It may have been removed or the link may be incorrect.</p>
+      <a href="index.html#catalog" class="btn btn-primary">Back to catalog</a>
+    </section>
+
+    <div id="pd-content" class="hidden">
+      <nav id="pd-breadcrumb" class="breadcrumb" aria-label="Breadcrumb"></nav>
+
+      <section class="product-detail-layout" aria-labelledby="pd-title">
+        <div class="pd-gallery">
+          <div class="pd-main-image">
+            <img id="pd-main-img" src="" alt="" />
+          </div>
+          <div id="pd-thumbs" class="pd-thumbs" aria-label="Product image gallery"></div>
+        </div>
+
+        <div class="pd-purchase">
+          <p id="pd-category" class="eyebrow"></p>
+          <h1 id="pd-title" class="pd-title"></h1>
+          <p id="pd-subtitle" class="pd-subtitle"></p>
+
+          <div class="pd-price-line">
+            <strong id="pd-price" class="pd-price"></strong>
+            <del id="pd-old-price" class="pd-old-price hidden"></del>
+          </div>
+
+          <div id="pd-highlights-wrap" class="pd-highlights-wrap hidden">
+            <h2 class="pd-section-label">Highlights</h2>
+            <ul id="pd-highlights" class="pd-highlights"></ul>
+          </div>
+
+          <div class="pd-variant-wrap">
+            <h2 class="pd-section-label">Select Flavor / Nicotine Variant</h2>
+            <div id="pd-variants" class="pd-variant-grid"></div>
+          </div>
+
+          <div class="pd-availability">
+            <span class="pd-availability-label">Availability</span>
+            <strong id="pd-stock"></strong>
+          </div>
+
+          <div class="pd-purchase-controls">
+            <div class="qty-box" aria-label="Quantity">
+              <button type="button" id="pd-qty-minus" aria-label="Decrease quantity">−</button>
+              <input type="number" id="pd-qty" min="1" value="1" inputmode="numeric" aria-label="Quantity" />
+              <button type="button" id="pd-qty-plus" aria-label="Increase quantity">+</button>
+            </div>
+            <div class="pd-action-row">
+              <button type="button" id="pd-add-cart" class="btn btn-outline">Add to Cart</button>
+              <button type="button" id="pd-buy-now" class="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+
+          <dl class="pd-meta-list">
+            <div><dt>Category</dt><dd id="pd-meta-category"></dd></div>
+            <div><dt>Availability / Stock</dt><dd id="pd-meta-stock"></dd></div>
+            <div><dt>Authenticity</dt><dd>100% Original Sealed</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="product-tabs" aria-label="Product information">
+        <div class="pd-tab-list" role="tablist" aria-label="Product details">
+          <button type="button" class="pd-tab active" id="tab-btn-desc" role="tab" aria-selected="true" aria-controls="tab-desc" data-panel="tab-desc">Description</button>
+          <button type="button" class="pd-tab" id="tab-btn-info" role="tab" aria-selected="false" aria-controls="tab-info" data-panel="tab-info">Additional Information</button>
+          <button type="button" class="pd-tab" id="tab-btn-reviews" role="tab" aria-selected="false" aria-controls="tab-reviews" data-panel="tab-reviews">Reviews</button>
+        </div>
+
+        <div id="tab-desc" class="pd-tab-panel" role="tabpanel" aria-labelledby="tab-btn-desc">
+          <div id="pd-description" class="pd-description"></div>
+        </div>
+
+        <div id="tab-info" class="pd-tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-info">
+          <table class="specs-table">
+            <tbody>
+              <tr><th scope="row">Category</th><td id="pd-info-category"></td></tr>
+              <tr><th scope="row">Available Variants / Flavors</th><td id="pd-info-variants"></td></tr>
+              <tr><th scope="row">Stock Status</th><td id="pd-info-stock"></td></tr>
+              <tr><th scope="row">Delivery</th><td>Khulna &amp; Dhaka: 24–48 hours; nationwide courier: 2–4 working days.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="tab-reviews" class="pd-tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-reviews">
+          <div class="pd-review-summary">
+            <h2>Product reviews</h2>
+            <p>Product-specific ratings are not published on this page yet. Share your experience with our team on WhatsApp.</p>
+            <a id="pd-review-link" class="btn btn-outline" href="https://wa.me/8801410715713" target="_blank" rel="noopener">Share feedback on WhatsApp</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-products-section" aria-labelledby="related-heading">
+        <h2 id="related-heading">Related Products</h2>
+        <div id="related-grid" class="product-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="delivery-info" class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 10px;">
+            <span class="brand-mark" aria-hidden="true"><img src="assets/favicon.svg" alt="" /></span>
+            <span>GY Puff &amp; Cloud</span>
+          </div>
+          <p style="max-width: 380px;">Trusted supplier of authentic disposable vapes, refillable pod systems, coils, and premium e-liquids in Khulna and across Bangladesh.</p>
+          <p style="max-width: 380px; margin-top: 8px;">50% Advance / Full Advance Required (COD is not available). To confirm order, a minimum 50% advance or 100% full payment is required via bKash or Nagad.</p>
+        </div>
+
+        <div>
+          <h4 style="color: var(--text); font-weight: 600; margin-bottom: 10px;">Store Policies</h4>
+          <ul style="list-style: none; display: grid; gap: 6px;">
+            <li>Strict 18+ Age Verification</li>
+            <li>50% Advance / Full Advance Required (COD is not available)</li>
+            <li>Uncut Unboxing Video Required for DOA</li>
+            <li>Discreet Plain Packaging</li>
+            <li><a href="#terms-policy">Terms &amp; Conditions &amp; No Refund Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: var(--text); font-weight: 600; margin-bottom: 10px;">Contact &amp; Admin</h4>
+          <ul style="list-style: none; display: grid; gap: 6px;">
+            <li>Founder & CEO: Golden</li>
+            <li>Email: qazxswqa0000@gmail.com</li>
+            <li><a href="admin.html" style="text-decoration: underline;">Owner Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <section id="terms-policy" class="terms-policy" aria-labelledby="terms-policy-heading">
+        <h3 id="terms-policy-heading">Terms &amp; Conditions &amp; No Refund Policy</h3>
+        <ul>
+          <li><strong>Age Restriction (18+ Only):</strong> Products are strictly sold to adults aged 18 years and older.</li>
+          <li><strong>Payment &amp; Advance Policy:</strong> A minimum 50% advance or 100% full payment via bKash/Nagad Send Money to 01719738303 is mandatory to confirm any order. Cash on Delivery (COD) without advance is not available.</li>
+          <li><strong>Strict No Refund Policy:</strong> All sales are final. Once an order is confirmed or delivered, no refunds, returns, or cash-backs will be issued under any circumstances, including change of mind, flavor preference, or opened/unsealed packaging.</li>
+          <li><strong>Delivery &amp; Unclaimed Parcels:</strong> If a customer refuses or fails to receive a confirmed parcel upon courier arrival, the advance payment is non-refundable and will be adjusted against shipping and handling charges.</li>
+          <li><strong>Authenticity &amp; Inspection:</strong> Every device and e-liquid is 100% genuine and factory-sealed. Customers are advised to record an uncut unboxing video upon receiving the parcel.</li>
+        </ul>
+      </section>
+
+      <div class="warning-box">
+        <strong>Health &amp; Age Disclaimer:</strong> Products sold by GY Puff &amp; Cloud are intended strictly for adult smokers aged 18 and above. Not for use by minors, pregnant or nursing women, or individuals with cardiovascular conditions. Keep out of reach of children and pets.
+      </div>
+
+      <p style="margin-top: 20px; font-size: 12px;">&copy; 2026 GY Puff &amp; Cloud. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="cart-drawer" class="overlay drawer-overlay hidden" role="dialog" aria-modal="true">
+    <div class="drawer-box">
+      <div class="drawer-header">
+        <h3 style="font-size: 16px; font-weight: 700;">Your Cart</h3>
+        <button type="button" id="close-cart-btn" class="icon-btn">Close &times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <div id="cart-items-list"></div>
+
+        <form id="checkout-form" class="hidden" style="margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border);">
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Delivery Details</h4>
+          <div class="form-grid" style="gap: 10px;">
+            <div class="field">
+              <label for="cust-name">Full Name *</label>
+              <input type="text" id="cust-name" class="input" required placeholder="Enter your name" />
+            </div>
+            <div class="field">
+              <label for="cust-phone">Phone Number *</label>
+              <input type="tel" id="cust-phone" class="input" required placeholder="01XXXXXXXXX" />
+            </div>
+            <div class="field">
+              <label for="delivery-zone">Delivery Zone *</label>
+              <select id="delivery-zone" class="select">
+                <option value="inside">Inside Khulna / Dhaka (৳ 70)</option>
+                <option value="outside">Outside Dhaka - Courier (৳ 130)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cust-address">Full Delivery Address *</label>
+              <textarea id="cust-address" class="textarea" rows="2" required placeholder="House, Road, Area, Thana, District"></textarea>
+            </div>
+            <div class="field">
+              <label for="payment-method">Payment Method</label>
+              <select id="payment-method" class="select" required>
+                <option value="50">50% Advance via bKash / Nagad (Remaining on Delivery)</option>
+                <option value="100">100% Full Advance Payment via bKash / Nagad</option>
+              </select>
+              <div class="payment-number-box">
+                <p class="payment-number-label">bKash / Nagad Personal (Send Money Only):</p>
+                <div class="payment-number-row">
+                  <strong class="payment-number">01719738303</strong>
+                  <button type="button" class="payment-copy-btn" id="copy-payment-number">Copy</button>
+                </div>
+                <p class="payment-number-note">Please Send Money Only to 01719738303 and enter your Sender Number &amp; Transaction ID (TrxID) below.</p>
+                <p class="payment-number-requirement">To confirm order, a minimum 50% advance or 100% full payment is required via bKash or Nagad.</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cust-note">Sender Number &amp; Transaction ID (TrxID) *</label>
+              <input type="text" id="cust-note" class="input" required placeholder="Enter bKash/Nagad Send Money Number and Transaction ID (TrxID) *Required for verification*" />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="cart-footer" class="drawer-footer hidden">
+        <div style="display: grid; gap: 6px; font-size: 13px; margin-bottom: 14px;">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-muted);">Subtotal</span>
+            <span id="cart-subtotal">৳ 0</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-muted);">Delivery Charge</span>
+            <span id="cart-delivery">৳ 70</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; padding-top: 8px; border-top: 1px solid var(--border);">
+            <span>Total Payable</span>
+            <span id="cart-total">৳ 0</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span id="cart-advance-label" style="color: var(--text-muted);">50% Advance Paid / Required</span>
+            <span id="cart-advance">৳ 0</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-muted);">Remaining Due</span>
+            <span id="cart-due">৳ 0</span>
+          </div>
+        </div>
+        <label class="checkout-agreement" for="agree-terms">
+          <input type="checkbox" id="agree-terms" form="checkout-form" required />
+          <span>I agree to the Terms &amp; Conditions and understand that there is NO REFUND once the order is confirmed.</span>
+        </label>
+        <button type="button" id="confirm-whatsapp-btn" class="btn btn-whatsapp" style="width: 100%;">Confirm Order via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="age-gate" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-box modal-sm" style="text-align: center;">
+      <p class="eyebrow">Age Verification</p>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Are you 18 years or older?</h2>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+        This website sells nicotine and vaping products intended strictly for adults of legal smoking age (18+) in Bangladesh. 50% Advance / Full Advance Required (COD is not available). To confirm order, a minimum 50% advance or 100% full payment is required via bKash or Nagad.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button type="button" id="age-no-btn" class="btn btn-outline">No, Exit</button>
+        <button type="button" id="age-yes-btn" class="btn btn-primary">Yes, I am 18+</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>
