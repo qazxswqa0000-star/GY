@@ -527,7 +527,29 @@ html.dark .hero-cta-group .hero-primary {
 
 .search-sort-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
+}
+
+.search-sort-group .input {
+  flex: 1 1 200px;
+}
+
+.search-sort-group .select {
+  flex: 1 1 150px;
+  width: auto !important;
+}
+
+@media (min-width: 768px) {
+  .search-sort-group {
+    width: auto;
+    flex-wrap: nowrap;
+  }
+
+  .search-sort-group .select {
+    flex: 0 0 auto;
+  }
 }
 
 .input, .select, .textarea {
@@ -639,16 +661,19 @@ html.dark .hero-cta-group .hero-primary {
 .card-media {
   display: block;
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: auto;
+  height: auto;
   background-color: var(--surface-alt);
   overflow: hidden;
   cursor: pointer;
 }
 
 .card-media img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
+  object-position: center top;
 }
 
 .card-badge {
@@ -894,19 +919,69 @@ html.dark .hero-cta-group .hero-primary {
 }
 
 .pd-main-image {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: auto;
   overflow: hidden;
-  display: grid;
-  place-items: center;
+  width: 100%;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-alt);
+  cursor: zoom-in;
 }
 
 .pd-main-image img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.pd-main-image:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.lightbox-open {
+  overflow: hidden;
+}
+
+.lightbox-overlay {
+  z-index: 100;
+  padding: 56px 24px 24px;
+  background-color: rgba(0, 0, 0, 0.92);
+}
+
+.lightbox-image {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 80px);
+  border-radius: var(--radius);
   object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
 }
 
 .pd-thumbs {
@@ -935,7 +1010,7 @@ html.dark .hero-cta-group .hero-primary {
 .pd-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .pd-purchase .eyebrow {
@@ -1627,11 +1702,11 @@ code.inline-code {
 }
 
 .review-col-up {
-  animation: scrollReviewsUp 32s linear infinite;
+  animation: scrollReviewsUp 75s linear infinite;
 }
 
 .review-col-down {
-  animation: scrollReviewsDown 36s linear infinite;
+  animation: scrollReviewsDown 85s linear infinite;
 }
 
 .testimonials-grid:hover .review-col-track {
@@ -1677,6 +1752,31 @@ code.inline-code {
   margin-top: 4px;
   padding-top: 12px;
   border-top: 1px solid var(--border);
+}
+
+@media (max-width: 767px) {
+  .testimonials-grid {
+    height: 460px;
+    gap: 14px;
+  }
+
+  .review-card {
+    padding: 14px 16px;
+    gap: 8px;
+  }
+
+  .review-text {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .review-author {
+    padding-top: 10px;
+  }
+
+  .review-col-track.review-col-up {
+    animation-duration: 110s;
+  }
 }
 
 .review-avatar {
@@ -2798,8 +2898,9 @@ html.dark .gy-chat-send {
 }
 
 .marquee-card-img {
+  width: 100%;
+  height: 190px;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
   background-color: var(--surface-alt);
 }
 
@@ -2808,6 +2909,7 @@ html.dark .gy-chat-send {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
 }
 
 .marquee-card-body {

@@ -201,6 +201,49 @@
     setMainImage(0);
   }
 
+  function initImageLightbox() {
+    const viewer = document.querySelector(".pd-main-image");
+    const mainImage = document.getElementById("pd-main-img");
+    const lightbox = document.getElementById("product-lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const closeButton = document.getElementById("lightbox-close");
+
+    const closeLightbox = () => {
+      lightbox.classList.add("hidden");
+      document.body.classList.remove("lightbox-open");
+      lightboxImage.removeAttribute("src");
+      viewer.focus();
+    };
+
+    const openLightbox = () => {
+      const source = mainImage.currentSrc || mainImage.getAttribute("src");
+      if (!source) return;
+
+      lightboxImage.src = source;
+      lightboxImage.alt = mainImage.alt;
+      lightbox.classList.remove("hidden");
+      document.body.classList.add("lightbox-open");
+      closeButton.focus();
+    };
+
+    viewer.addEventListener("click", openLightbox);
+    viewer.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox();
+      }
+    });
+    closeButton.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", event => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !lightbox.classList.contains("hidden")) {
+        closeLightbox();
+      }
+    });
+  }
+
   function renderHighlights() {
     const highlights = (product.what_you_get || "").split("|").map(item => item.trim()).filter(Boolean);
     const wrap = document.getElementById("pd-highlights-wrap");
@@ -672,6 +715,7 @@
   function initPage() {
     initTheme();
     initAgeGate();
+    initImageLightbox();
     updateCartBadge();
     renderTabs();
 

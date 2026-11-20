@@ -180,10 +180,10 @@
   <!-- Main Catalog -->
   <main id="catalog" class="container catalog-section">
     <div class="toolbar">
-      <div id="category-pills" class="category-pills"></div>
       <div class="search-sort-group">
+        <select id="category-select" class="select" aria-label="Filter by category" style="width: 195px;"></select>
         <input type="search" id="search-input" class="input" placeholder="Search devices or flavors..." />
-        <select id="sort-select" class="select" style="width: 170px;">
+        <select id="sort-select" class="select" style="width: 170px;" aria-label="Sort products">
           <option value="recommended">Featured</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>

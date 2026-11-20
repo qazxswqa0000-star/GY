@@ -205,23 +205,25 @@
   }
 
   function renderCategories() {
-    const container = document.getElementById("category-pills");
+    const select = document.getElementById("category-select");
+    if (!select) return;
+
     const sheetCats = [...new Set(products.map(p => p.category))];
     const cats = ["All", ...new Set([...CATEGORIES, ...sheetCats])];
 
-    container.innerHTML = cats.map(cat => `
-      <button type="button" class="pill ${activeCategory === cat ? "active" : ""}" data-cat="${cat}">
-        ${cat}
-      </button>
-    `).join("");
-
-    container.querySelectorAll(".pill").forEach(btn => {
-      btn.addEventListener("click", () => {
-        activeCategory = btn.dataset.cat;
-        renderCategories();
-        renderGrid();
-      });
+    select.textContent = "";
+    cats.forEach(cat => {
+      const option = document.createElement("option");
+      option.value = cat;
+      option.textContent = cat === "All" ? "All Categories" : cat;
+      option.selected = activeCategory === cat;
+      select.appendChild(option);
     });
+
+    select.onchange = () => {
+      activeCategory = select.value;
+      renderGrid();
+    };
   }
 
   function renderGrid() {
@@ -566,82 +568,101 @@
     if (!grid) return;
 
     const reviews = [
-      {
-        name: "NURUDDIN K.",
-        initials: "NK",
-        product: "ElfBar BC10000 Disposable",
-        badge: "Verified Buyer",
-        since: "Customer since Oct 2026 · 3 orders",
-        text: "Great Service. Highly recommended! ১০০% অরিজিনাল সিলড প্রোডাক্ট পেয়েছি এবং ডেলিভারিও খুব দ্রুত ছিল।"
-      },
-      {
-        name: "MOIN U.",
-        initials: "MU",
-        product: "Vaporesso XROS 4 Pod Kit",
-        badge: "Regular Customer",
-        since: "Customer since Aug 2026 · 4 orders",
-        text: "Ami pray 6 month dhore use korteci they are very nice guy and tader service one of the best. Packaging khub discreet chilo."
-      },
-      {
-        name: "SHAHARUK J.",
-        initials: "SJ",
-        product: "Tokyo Iced Mango Nic Salt",
-        badge: "Verified Buyer",
-        since: "Customer since Oct 2026 · 2 orders",
-        text: "GY Puff & Cloud থেকে পড এবং নিক সল্ট নিয়েছি। সার্ভিস নিয়ে আমি বেশ সন্তুষ্ট। পুরো প্রক্রিয়াটি সহজ ছিল এবং হোয়াটসঅ্যাপে ভালো সাপোর্ট পেয়েছি। ❤️"
-      },
-      {
-        name: "TANVIR A.",
-        initials: "TA",
-        product: "Oxva Xlim Pro Kit",
-        badge: "Khulna Express",
-        since: "Customer since Sep 2026 · 5 orders",
-        text: "সাতক্ষীরায় এমন বিশ্বস্ত ভ্যাপ শপ আগে ছিল না। সিকিউরিটি কোড স্ক্যান করে চেক করেছি, একদম অথেনটিক।"
-      },
-      {
-        name: "RAKIBUL H.",
-        initials: "RH",
-        product: "Nasty Juice Cush Man",
-        badge: "Verified Buyer",
-        since: "Customer since Sep 2026 · 2 orders",
-        text: "Dhaka theke order korsilam, 2 diner moddhei hate peye gesi. Best price in BD."
-      },
-      {
-        name: "FAHIM M.",
-        initials: "FM",
-        product: "Caliburn G3 Replacement Pods",
-        badge: "Regular Customer",
-        since: "Customer since Jul 2026 · 6 orders",
-        text: "Coil ar cartridge sob somoy stock e thake. Behavior khub e valo, kono jhamela charai order kora jay."
+      { name: "NURUDDIN K.", initials: "NK", product: "ElfBar BC10000 Disposable", since: "Dhaka · 3 orders", text: "ElfBar BC10000 niyesilam, ekdom original sealed chilo. Service khub valo." },
+      { name: "MOIN U.", initials: "MU", product: "Vaporesso XROS 4 Pod Kit", since: "Khulna · 4 orders", text: "XROS 4 pod kit niyesi, smooth draw ar genuine product. Delivery o fast chilo." },
+      { name: "SHAHARUK J.", initials: "SJ", product: "Tokyo Iced Mango Nic Salt", since: "Chattogram · 2 orders", text: "Tokyo Iced Mango nic salt niyesilam. Flavor ekdom fresh ar support khub helpful." },
+      { name: "TANVIR A.", initials: "TA", product: "Oxva Xlim Pro Kit", since: "Sylhet · 5 orders", text: "Oxva Xlim Pro kit niye khub satisfied. Packaging ar service duitai top notch." },
+      { name: "RAKIBUL H.", initials: "RH", product: "Nasty Juice Cush Man", since: "Dhaka · 2 orders", text: "Nasty Cush Man niyesilam, authentic product peyechi. Order process khub easy." },
+      { name: "FAHIM M.", initials: "FM", product: "Caliburn G3 Replacement Pods", since: "Khulna · 6 orders", text: "Caliburn G3 pod stock e paya jay sob somoy. Response ar service darun." },
+      { name: "MAHDI H.", initials: "MH", product: "Flyto Switch 6000 Puffs", since: "Rajshahi · 2 orders", text: "Flyto 6000 niyesilam, puff ar flavor duitai valo. Delivery time moto peyechi." },
+      { name: "SABBIR A.", initials: "SA", product: "Vaporesso Luxe XR Max", since: "Gazipur · 3 orders", text: "Luxe XR Max niyesi, build quality ar flavor delivery ekdom joss. Service great." },
+      { name: "ASHIKUR R.", initials: "AR", product: "ElfBar TE6000 Disposable", since: "Cumilla · 1 order", text: "ElfBar TE6000 order korsilam. Original device ar bKash/Nagad verification smooth chilo." },
+      { name: "NABIL S.", initials: "NS", product: "Oxva Xlim Go Pod Kit", since: "Bogura · 2 orders", text: "Xlim Go niyesi, lightweight ar easy to use. Seller er behavior khub valo." },
+      { name: "TOUFIQ I.", initials: "TI", product: "VGOD Lush Ice Nic Salt", since: "Dhaka · 4 orders", text: "VGOD Lush Ice niyesilam, authentic bottle peyechi. Fast reply ar clean packaging." },
+      { name: "ZAHID H.", initials: "ZH", product: "Flyto Switch Pro 10000", since: "Narayanganj · 2 orders", text: "Flyto 10K niyesilam, battery backup ar taste khub valo. Service reliable." },
+      { name: "ARIF M.", initials: "AM", product: "Uwell Caliburn A3S", since: "Khulna · 3 orders", text: "Caliburn A3S niye khub khushi. Original product ar time moto parcel peyechi." },
+      { name: "SADMAN K.", initials: "SK", product: "Dinner Lady Lemon Tart", since: "Chattogram · 2 orders", text: "Lemon Tart niyesilam, flavor ekdom exact. Support team khub polite." },
+      { name: "IMRAN H.", initials: "IH", product: "Oxva Xlim Pro 2 Kit", since: "Sylhet · 3 orders", text: "Xlim Pro 2 niyesi, display ar performance khub valo. Delivery o fast chilo." },
+      { name: "NAFIS T.", initials: "NT", product: "Bang Blaze BC 5000", since: "Rangpur · 1 order", text: "Bang Blaze 5000 niyesilam, sealed pack peyechi. Service khub valo laglo." },
+      { name: "SHANTO R.", initials: "SR", product: "Vaporesso XROS 3 Mini", since: "Barishal · 2 orders", text: "XROS 3 Mini niyesilam, compact ar smooth. Order confirm kora khub sohoj chilo." },
+      { name: "RASHEDUL I.", initials: "RI", product: "Pod Salt Blue Razz Lemonade", since: "Dhaka · 3 orders", text: "Pod Salt Blue Razz niyesilam, original juice. Packaging khub safe chilo." },
+      { name: "MEHEDI H.", initials: "MH", product: "GeekVape Wenax Q", since: "Mymensingh · 2 orders", text: "Wenax Q niyesi, flavor quality khub valo. WhatsApp support fast peyechi." },
+      { name: "FARHAN S.", initials: "FS", product: "Lost Mary MO5000", since: "Khulna · 4 orders", text: "Lost Mary MO5000 niyesilam, genuine product ar smooth puff. Service 10/10." },
+      { name: "TANJIL A.", initials: "TA", product: "Oxva Xlim V2 Cartridges", since: "Jessore · 3 orders", text: "Xlim V2 pod cartridge niyesi, leak-free ar original. Delivery khub fast." },
+      { name: "KHALED M.", initials: "KM", product: "Dr. Vapes Pink Panther", since: "Dhaka · 2 orders", text: "Pink Panther niyesilam, authentic taste peyechi. Customer service khub valo." },
+      { name: "SAMIUL H.", initials: "SH", product: "Vaporesso XROS Corex Pods", since: "Chattogram · 5 orders", text: "XROS Corex pods niyesi, coil life valo pacchi. Regular service khub reliable." },
+      { name: "PARVEZ R.", initials: "PR", product: "ElfBar Raya D3 25000", since: "Sylhet · 2 orders", text: "Raya D3 niyesilam, long lasting puff ar authentic. Packaging valo chilo." },
+      { name: "SIAM K.", initials: "SK", product: "Riot Squad Punx Strawberry", since: "Rajshahi · 1 order", text: "Riot Squad nic salt niyesilam, original bottle. Delivery time moto eseche." },
+      { name: "TAREQ A.", initials: "TA", product: "Smok Nord 5 Kit", since: "Gazipur · 2 orders", text: "Smok Nord 5 niyesi, genuine kit ar smooth experience. Service khub valo." },
+      { name: "ASHRAFUL I.", initials: "AI", product: "Uwell Caliburn G3 Lite", since: "Khulna · 3 orders", text: "Caliburn G3 Lite niyesi, budget e best pod. Seller response khub fast." },
+      { name: "ROHAN M.", initials: "RM", product: "Bar Juice 5000 Peach Ice", since: "Cumilla · 2 orders", text: "Bar Juice 5000 niyesilam, flavor khub fresh. Order ar delivery duitai smooth." },
+      { name: "NAZMUL H.", initials: "NH", product: "Voopoo Argus G2", since: "Dhaka · 2 orders", text: "Argus G2 niyesi, genuine device ar clean delivery. Service khub valo." },
+      { name: "SHAFIN R.", initials: "SR", product: "Tokyo Super Cool Menthol", since: "Bogura · 3 orders", text: "Tokyo Menthol niyesilam, original product. Packaging ar support valo chilo." },
+      { name: "JUBAYER A.", initials: "JA", product: "ElfBar BC5000 Disposable", since: "Narayanganj · 4 orders", text: "ElfBar BC5000 niyesilam, sealed pack ar authentic. Service khub trustworthy." },
+      { name: "ADNAN K.", initials: "AK", product: "Oxva Xlim SQ Pro", since: "Khulna · 2 orders", text: "Xlim SQ Pro niyesilam, original kit ar fast delivery. Service khub valo." }
+    ];
+
+    const createCard = review => {
+      const card = document.createElement("article");
+      card.className = "review-card";
+
+      const stars = document.createElement("div");
+      stars.className = "review-stars";
+      stars.textContent = "★★★★★";
+
+      const text = document.createElement("p");
+      text.className = "review-text";
+      text.textContent = review.text;
+
+      const author = document.createElement("div");
+      author.className = "review-author";
+
+      const avatar = document.createElement("div");
+      avatar.className = "review-avatar";
+      avatar.textContent = review.initials;
+
+      const meta = document.createElement("div");
+      meta.className = "review-meta";
+
+      const name = document.createElement("strong");
+      name.textContent = review.name;
+
+      const product = document.createElement("span");
+      product.textContent = `on ${review.product}`;
+
+      const since = document.createElement("span");
+      since.style.marginTop = "2px";
+      since.textContent = review.since;
+
+      meta.append(name, product, since);
+      author.append(avatar, meta);
+      card.append(stars, text, author);
+      return card;
+    };
+
+    let renderedColumnCount = 0;
+    const renderColumns = () => {
+      const columnCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+      if (columnCount === renderedColumnCount) return;
+      renderedColumnCount = columnCount;
+      grid.innerHTML = "";
+
+      const directions = ["review-col-up", "review-col-down", "review-col-up"];
+      for (let columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+        const track = document.createElement("div");
+        track.className = `review-col-track ${directions[columnIndex]}`;
+
+        const cards = reviews
+          .filter((_, reviewIndex) => reviewIndex % columnCount === columnIndex)
+          .map(createCard);
+        cards.forEach(card => track.appendChild(card));
+        cards.forEach(card => track.appendChild(card.cloneNode(true)));
+        grid.appendChild(track);
       }
-    ];
+    };
 
-    const createCardHTML = r => `
-      <article class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">${r.text}</p>
-        <div class="review-author">
-          <div class="review-avatar">${r.initials}</div>
-          <div class="review-meta">
-            <strong>${r.name}</strong>
-            <span>on ${r.product}</span>
-            <span class="review-badge">${r.badge}</span>
-            <span style="margin-top: 2px;">${r.since}</span>
-          </div>
-        </div>
-      </article>
-    `;
-
-    const columns = [
-      { items: [reviews[0], reviews[3]], dir: "review-col-up" },
-      { items: [reviews[1], reviews[4]], dir: "review-col-down" },
-      { items: [reviews[2], reviews[5]], dir: "review-col-up" }
-    ];
-
-    grid.innerHTML = columns.map(col => {
-      const cards = col.items.map(createCardHTML).join("");
-      return `<div class="review-col-track ${col.dir}">${cards}${cards}</div>`;
-    }).join("");
+    renderColumns();
+    window.addEventListener("resize", renderColumns);
   }
 
   function initLoyaltyLevels() {
