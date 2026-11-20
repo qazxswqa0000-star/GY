@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://gypuff.asf.sale/sitemap.xml
+Sitemap: https://gy-puff-cloud.pages.dev/sitemap.xml
