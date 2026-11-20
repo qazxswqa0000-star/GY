@@ -283,6 +283,70 @@
     });
   }
 
+  function renderMarquee() {
+    const track = document.getElementById("marquee-track");
+    const section = document.getElementById("featured-marquee");
+    if (!track || !section) return;
+
+    const featured = [...products].sort((a, b) => a.order - b.order).slice(0, 12);
+    if (!featured.length) {
+      section.classList.add("hidden");
+      return;
+    }
+
+    const buildGroup = (isDuplicate = false) => {
+      const group = document.createElement("div");
+      group.className = "marquee-group";
+
+      if (isDuplicate) group.setAttribute("aria-hidden", "true");
+
+      featured.forEach(product => {
+        const card = document.createElement("a");
+        card.className = "marquee-card";
+        card.href = `product.html?slug=${encodeURIComponent(product.slug)}`;
+        card.setAttribute("aria-label", product.name);
+
+        if (isDuplicate) card.tabIndex = -1;
+
+        const imageFrame = document.createElement("div");
+        imageFrame.className = "marquee-card-img";
+        const image = document.createElement("img");
+        image.src = product.resolvedImage;
+        image.alt = product.name;
+        image.loading = "lazy";
+        image.addEventListener("error", () => {
+          image.src = FALLBACK_IMAGE_URL;
+        }, { once: true });
+        imageFrame.appendChild(image);
+
+        const body = document.createElement("div");
+        body.className = "marquee-card-body";
+
+        const category = document.createElement("span");
+        category.className = "marquee-card-cat";
+        category.textContent = product.category;
+
+        const title = document.createElement("strong");
+        title.className = "marquee-card-title";
+        title.textContent = product.name;
+
+        const price = document.createElement("span");
+        price.className = "marquee-card-price";
+        price.textContent = `${product.max > product.min ? "From " : ""}${formatTaka(product.min)}`;
+
+        body.append(category, title, price);
+        card.append(imageFrame, body);
+        group.appendChild(card);
+      });
+
+      return group;
+    };
+
+    track.textContent = "";
+    track.append(buildGroup(), buildGroup(true));
+    section.classList.remove("hidden");
+  }
+
   const getCart = () => {
     try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
     catch (e) { return []; }
@@ -725,6 +789,7 @@
 
   document.addEventListener("DOMContentLoaded", async () => {
     const requestedCategory = new URLSearchParams(window.location.search).get("category");
+    window.initSocialLinks();
     initTheme();
     initAgeGate();
     initLoyaltyLevels();
@@ -781,6 +846,7 @@
       }
       renderCategories();
       renderGrid();
+      renderMarquee();
       catalogHasRendered = true;
     };
 

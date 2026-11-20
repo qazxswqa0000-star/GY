@@ -1,6 +1,10 @@
 window.YEAXMI_CONFIG = {
   STORE_NAME: "GY Puff & Cloud",
   WHATSAPP_NUMBER: "8801410715713",
+  SOCIAL_LINKS: {
+    facebook: "https://www.facebook.com/share/1M5k583h2M/",
+    telegram: "https://t.me/gypuff"
+  },
 
   // Published Google Sheet CSV URLs
   PRODUCTS_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQV0tQsZO9JAwGuIkOO0Tx4DP_W_15g970kbgg-KHTW8TS32TfHxTSGnjqpxZPSryJFuscIrfBhTvzF/pub?gid=0&single=true&output=csv",

@@ -724,6 +724,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
+    window.initSocialLinks();
     initPage();
     const slug = new URLSearchParams(window.location.search).get("slug");
     if (!slug) {
