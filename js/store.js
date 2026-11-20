@@ -187,7 +187,7 @@
       "@type": "Product",
       name: item.name,
       image: item.images[0],
-      url: `https://gypuff.asf.sale/product.html?slug=${encodeURIComponent(item.slug)}`,
+      url: `https://gy-puff-cloud.pages.dev/product.html?slug=${encodeURIComponent(item.slug)}`,
       category: item.category,
       description: item.subtitle || item.description || undefined,
       offers: item.min > 0 ? {

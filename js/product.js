@@ -356,13 +356,14 @@
     const storeName = CFG.STORE_NAME || "GY Puff & Cloud";
     const shareTitle = `${product.name} | ${storeName}`;
     const shareDescription = product.subtitle || product.name;
-    const imgSrc = product.images[0] || "og-preview.jpg";
+    const imgSrc = product.images[0] || "og-preview.jpg?v=2";
     const shareImage = new URL(imgSrc, window.location.origin).href;
     document.title = shareTitle;
     document.querySelector('meta[name="description"]').content = shareDescription;
     document.getElementById("og-title").content = shareTitle;
     document.getElementById("og-description").content = shareDescription;
     document.getElementById("og-image").content = shareImage;
+    document.getElementById("og-image-secure").content = shareImage;
     document.getElementById("twitter-title").content = shareTitle;
     document.getElementById("twitter-description").content = shareDescription;
     document.getElementById("twitter-image").content = shareImage;
